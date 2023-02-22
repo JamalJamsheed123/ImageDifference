@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">ImageDiff</string>
+    <string name="app_name">FindDiff</string>
+
+    <string name="FindDiff">Spot The Difference</string>
+
+    <string name="GameStart">Start</string>
 </resources>
