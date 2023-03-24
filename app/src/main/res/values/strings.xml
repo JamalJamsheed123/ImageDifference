@@ -4,4 +4,9 @@
     <string name="FindDiff">Spot The Difference</string>
 
     <string name="GameStart">Start</string>
+
+    <string name="LevelsSelect">Select Level</string>
+
+    <string name="LevelsNumber1">Level 1</string>
+
 </resources>
