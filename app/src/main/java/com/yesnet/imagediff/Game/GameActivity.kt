@@ -12,7 +12,10 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.yesnet.imagediff.Models.*
+import kotlinx.android.synthetic.main.game_level1.*
+import kotlinx.android.synthetic.main.item_row.*
 import java.io.Serializable
 
 
@@ -32,6 +35,19 @@ class GameActivity : AppCompatActivity() {
             model = intent.getSerializableExtra("model") as GameModelClass
         }
 
+
+        differenceChecker = findViewById(R.id.DifferenceChecker1)
+
+        Glide.with(this)
+            .load(model?.imageUrl)
+            .into(differenceChecker)
+
+        differenceChecker1 = findViewById(R.id.DifferenceChecker2)
+
+
+        Glide.with(this)
+            .load(model?.differenceImageUrl)
+            .into(differenceChecker1)
 
       //  val levelName = intent.getStringExtra("levelName")
       //  val levelUnlocked = intent.getBooleanExtra("levelUnLocked", false)
@@ -87,12 +103,12 @@ class GameActivity : AppCompatActivity() {
         val box5 = BoundingBox(x5, y5, width5, height5)
         result.add(box5)
 */
-        differenceChecker = findViewById(R.id.DifferenceChecker1)
-        differenceChecker1 = findViewById(R.id.DifferenceChecker2)
+
 
 
         val handleTouch: View.OnTouchListener = object : View.OnTouchListener {
     //        @SuppressLint("SuspiciousIndentation")
+            @SuppressLint("SuspiciousIndentation")
             override fun onTouch(v: View?, event: MotionEvent): Boolean {
                 val x = event.x.toInt()
                 val y = event.y.toInt()
@@ -105,27 +121,29 @@ class GameActivity : AppCompatActivity() {
                 val screenX = event.x.toInt()
                 val screenY = event.y.toInt()
 
-              var found = false
-                model?.boundingBox?.forEach {
+        run lit@{
+            model?.boundingBox?.forEach {
 
-                    if (screenX > it.x && screenY > it.y && screenX < it.x + it.width && screenY < it.y + it.height) {
-//                        if (it.equals(box1)) {
-//                            found = true
-//                        }
-//                        if (it.equals(box2)) {
-//                            found = true
-//                        }
-//                        if (it.equals(box3)) {
-//                            found = true
-//                        }
-//                        if (it.equals(box4)) {
-//                            found = true
-//                        }
-//                        if (it.equals(box5)) {
-                            found = true
-//                        }
-                    }
+                if (screenX > it.x && screenY > it.y && screenX < it.x + it.width && screenY < it.y + it.height) {
+                    it.isPass = true
+
+                    val toast1 = Toast.makeText(
+                        applicationContext,
+                        "Correct",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast1.show()
+                    val handler = Handler()
+                    handler.postDelayed(Runnable { toast1.cancel() }, 500)
+
+
+                    return@lit
+
                 }
+
+            }
+        }
+                 val found = checkAllBoxPass()
                     if (found == true){
 
                         val toast1 = Toast.makeText(
@@ -137,11 +155,13 @@ class GameActivity : AppCompatActivity() {
                         successUnlockNextLevel()
                         val handler = Handler()
                         handler.postDelayed(Runnable { toast1.cancel() }, 500)
+
+                        finish()
                     }
                     else
                     {
                         val toast2 = Toast.makeText(
-                            applicationContext, "User Action Fail", Toast.LENGTH_SHORT
+                            applicationContext, "Please find all Difference", Toast.LENGTH_SHORT
                         )
                         toast2.show()
 
@@ -155,6 +175,17 @@ class GameActivity : AppCompatActivity() {
             differenceChecker1.setOnTouchListener(handleTouch)
             differenceChecker.setOnTouchListener(handleTouch)
         }
+
+    fun checkAllBoxPass():Boolean{
+
+        val check = model?.boundingBox?.firstOrNull { !it.isPass }?.isPass
+
+         if (check != null)
+             return check
+
+        return true
+
+    }
 
 //sharedPreferences.edit().putInt("IsUnlocked",2).apply()
     fun successUnlockNextLevel(){

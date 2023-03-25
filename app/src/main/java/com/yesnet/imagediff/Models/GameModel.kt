@@ -21,5 +21,6 @@ data class Box (
     var x: Int,
     var y: Int,
     var width: Int,
+    var isPass: Boolean = false,
     var height: Int
 ): Serializable

@@ -13,30 +13,35 @@
     "x" : 525,
     "y": 270,
     "width": 60,
+      "isPass": false,
     "height": 60
   },
       {
         "x" : 850,
         "y": 350,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
         "x" : 15,
         "y": 960,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
         "x" : 840,
         "y": 680,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
         "x" : 860,
         "y": 110,
         "width": 60,
+        "isPass": false,
         "height": 60
       }]
 
@@ -54,30 +59,35 @@
       "x" : 570,
       "y": 80,
       "width": 60,
+      "isPass": false,
       "height": 60
     },
       {
         "x" : 180,
         "y": 130,
         "width": 50,
+        "isPass": false,
         "height": 60
       },
       {
         "x" : 850,
         "y": 200,
         "width": 60,
+        "isPass": false,
         "height": 40
       },
       {
         "x" : 930,
         "y": 40,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
         "x" : 750,
         "y": 550,
         "width": 60,
+        "isPass": false,
         "height": 60
       }]
 
@@ -91,33 +101,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image4.jpeg?alt=media&token=27d62255-16ad-42e1-aa28-c664a8090f86",
     "level": 2,
     "boundingBox": [{
-      "x" : 330,
-      "y": 200,
+      "x" : 335,
+      "y": 205,
       "width": 60,
+      "isPass": false,
       "height": 60
     },
       {
-        "x" : 670,
-        "y": 200,
+        "x" : 675,
+        "y": 205,
         "width": 50,
+        "isPass": false,
         "height": 40
       },
       {
-        "x" : 690,
-        "y": 585,
+        "x" : 695,
+        "y": 590,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 210,
-        "y": 540,
+        "x" : 215,
+        "y": 545,
         "width": 60,
+        "isPass": false,
         "height": 55
       },
       {
-        "x" : 330,
-        "y": 630,
+        "x" : 335,
+        "y": 635,
         "width": 60,
+        "isPass": false,
         "height": 55
       }]
 
@@ -132,33 +147,38 @@
     "level": 3,
     "boundingBox": [
       {
-        "x": 90,
-        "y": 460,
+        "x": 95,
+        "y": 465,
         "width": 45,
+        "isPass": false,
         "height": 45
       },
       {
-        "x" : 380,
-        "y": 920,
+        "x" : 385,
+        "y": 925,
         "width": 45,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 240,
-        "y": 440,
+        "x" : 245,
+        "y": 445,
         "width": 60,
+        "isPass": false,
         "height": 65
       },
       {
-        "x" : 580,
-        "y": 150,
+        "x" : 585,
+        "y": 155,
         "width": 45,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 850,
-        "y": 100,
+        "x" : 855,
+        "y": 105,
         "width": 60,
+        "isPass": false,
         "height": 50
       }]
 
@@ -172,33 +192,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image6.jpeg?alt=media&token=5bccd7a1-7565-4ac2-b90f-15dfa5384b34",
     "level": 4,
     "boundingBox": [{
-      "x" : 850,
-      "y": 635,
+      "x" : 855,
+      "y": 640,
       "width": 55,
+      "isPass": false,
       "height": 50
     },
       {
-        "x" : 740,
-        "y": 340,
+        "x" : 745,
+        "y": 345,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 620,
-        "y": 80,
+        "x" : 625,
+        "y": 85,
         "width": 60,
+        "isPass": false,
         "height": 40
       },
       {
-        "x" : 560,
-        "y": 650,
+        "x" : 565,
+        "y": 655,
         "width": 65,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 450,
-        "y": 180,
+        "x" : 455,
+        "y": 185,
         "width": 60,
+        "isPass": false,
         "height": 50
       }]
 
@@ -212,33 +237,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image7.jpeg?alt=media&token=e7afc848-694e-4fa9-a1dd-b17fb9ceb44a",
     "level": 5,
     "boundingBox": [{
-      "x" : 740,
-      "y": 300,
+      "x" : 745,
+      "y": 305,
       "width":  65,
+      "isPass": false,
       "height": 45
     },
       {
-        "x" : 940,
-        "y": 430,
+        "x" : 945,
+        "y": 435,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 620,
-        "y": 530,
+        "x" : 625,
+        "y": 535,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 510,
-        "y": 430,
+        "x" : 515,
+        "y": 435,
         "width": 55,
+        "isPass": false,
         "height": 65
       },
       {
-        "x" : 100,
-        "y": 610,
+        "x" : 105,
+        "y": 615,
         "width": 60,
+        "isPass": false,
         "height": 60
       }]
 
@@ -252,33 +282,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image8.jpeg?alt=media&token=f1a0b4f1-10cb-4f50-9ea7-05208e6ef49b ",
     "level": 6,
     "boundingBox": [{
-      "x" : 880,
-      "y": 480,
+      "x" : 885,
+      "y": 485,
       "width": 45,
+      "isPass": false,
       "height": 45
     },
       {
-        "x" : 540,
-        "y": 680,
+        "x" : 545,
+        "y": 685,
         "width": 55,
+        "isPass": false,
         "height": 45
       },
       {
-        "x" : 330,
-        "y": 200,
+        "x" : 335,
+        "y": 205,
         "width": 60,
+        "isPass": false,
         "height": 45
       },
       {
-        "x" : 320,
-        "y": 400,
+        "x" : 325,
+        "y": 405,
         "width": 55,
+        "isPass": false,
         "height": 50
       },
       {
-        "x" : 120,
-        "y": 830,
+        "x" : 125,
+        "y": 835,
         "width": 55,
+        "isPass": false,
         "height": 55
       }]
 
@@ -292,33 +327,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image9.png?alt=media&token=0c283d54-3f00-48c1-94ee-0d77e0ab0a2d",
     "level": 7,
     "boundingBox": [{
-      "x" : 200,
-      "y": 900,
+      "x" : 205,
+      "y": 905,
       "width": 65,
+      "isPass": false,
       "height": 55
     },
       {
-        "x" : 310,
-        "y": 780,
+        "x" : 315,
+        "y": 785,
         "width": 60,
+        "isPass": false,
         "height": 55
       },
       {
-        "x" : 710,
-        "y": 110,
+        "x" : 715,
+        "y": 115,
         "width": 55,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 840,
-        "y": 840,
+        "x" : 845,
+        "y": 845,
         "width": 60,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 880,
-        "y": 480,
+        "x" : 885,
+        "y": 485,
         "width": 45,
+        "isPass": false,
         "height": 60
       }]
 
@@ -332,33 +372,38 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/imag10.jpeg?alt=media&token=1a480390-e468-41a5-b6ab-777dc84b8370",
     "level": 8,
     "boundingBox": [{
-      "x" : 210,
-      "y": 40,
+      "x" : 220,
+      "y": 45,
       "width": 55,
+      "isPass": false,
       "height": 60
     },
       {
-        "x" : 610,
-        "y": 50,
+        "x" : 620,
+        "y": 55,
         "width": 65,
+        "isPass": false,
         "height": 100
       },
       {
-        "x" : 700,
-        "y": 370,
+        "x" : 710,
+        "y": 375,
         "width": 55,
+        "isPass": false,
         "height": 45
       },
       {
-        "x" : 40,
-        "y": 210,
+        "x" : 50,
+        "y": 215,
         "width": 70,
+        "isPass": false,
         "height": 70
       },
       {
-        "x" : 40,
-        "y": 820,
+        "x" : 50,
+        "y": 825,
         "width": 70,
+        "isPass": false,
         "height": 65
       }]
 
@@ -372,34 +417,39 @@
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image11.jpeg?alt=media&token=84c6bba3-3123-4f15-b7dd-e1d3f31241c8",
     "level": 9,
     "boundingBox": [{
-      "x" : 310,
-      "y": 80,
+      "x" : 320,
+      "y": 85,
       "width": 60,
+      "isPass": false,
       "height": 45
     },
       {
-        "x" : 500,
-        "y": 120,
+        "x" : 510,
+        "y": 125,
         "width": 55,
+        "isPass": false,
         "height": 60
       },
       {
-        "x" : 880,
-        "y": 660,
+        "x" : 890,
+        "y": 665,
         "width": 50,
+        "isPass": false,
         "height": 55
       },
       {
-        "x" : 1000,
-        "y": 420,
+        "x" : 1010,
+        "y": 425,
         "width": 70,
+        "isPass": false,
         "height": 65
       },
       {
-        "x" : 880,
+        "x" : 585,
         "y": 610,
-        "width": 50,
-        "height": 65
+        "width": 60,
+        "isPass": false,
+        "height": 75
       }]
 
   }

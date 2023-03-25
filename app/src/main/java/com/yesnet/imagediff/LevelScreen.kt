@@ -28,7 +28,7 @@ class LevelScreen : AppCompatActivity(){
     private lateinit var adapter: GameAdapter
     private lateinit var recyclerView: RecyclerView
    // private  var  model: GameModelClass?  = null
-
+   private var levelList: ArrayList<GameModelClass>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -40,6 +40,21 @@ class LevelScreen : AppCompatActivity(){
 
     }
 
+    override fun onResume() {
+
+        if (levelList != null)
+        {
+            updateLevelList()
+            adapter.notifyDataSetChanged()
+        }
+        super.onResume()
+    }
+
+    override fun onPause() {
+
+
+        super.onPause()
+    }
 
     fun isLevelUnlocked(level: Int): Boolean{
         val sharedPreferences = getSharedPreferences("game",Context.MODE_PRIVATE)
@@ -90,11 +105,9 @@ class LevelScreen : AppCompatActivity(){
 
             // safe game in new variable and processed upto game levels using loop
 
-            val product = gameData.game
-            product.forEach {
-                it.isUnlocked = isLevelUnlocked(it.level)
+            levelList = gameData.game
+            updateLevelList()
 
-            }
 
             adapter.onItemClick = {
 
@@ -125,6 +138,13 @@ class LevelScreen : AppCompatActivity(){
         }
 
 
+    }
+
+    private fun updateLevelList(){
+        levelList?.forEach {
+            it.isUnlocked = isLevelUnlocked(it.level)
+
+        }
     }
 
     private fun getJSONFromAssets(): String? {

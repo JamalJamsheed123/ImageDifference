@@ -43,9 +43,9 @@
 
     <ImageView
         android:id="@+id/islock"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="right"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginStart="140dp"
         android:src="@drawable/lockicon">
 
