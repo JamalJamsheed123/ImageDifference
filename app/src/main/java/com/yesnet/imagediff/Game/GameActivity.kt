@@ -2,28 +2,30 @@ package com.yesnet.imagediff
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.annotation.RequiresApi
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.yesnet.imagediff.Models.*
 import kotlinx.android.synthetic.main.game_level1.*
 import kotlinx.android.synthetic.main.item_row.*
-import java.io.Serializable
 
 
 class GameActivity : AppCompatActivity() {
 
     private lateinit var differenceChecker: ImageButton
     private lateinit var differenceChecker1: ImageButton
+
     private  var  model: GameModelClass?  = null
+    private var  boxImageViews1:ArrayList<ImageView>? = null
+    private var  boxImageViews2:ArrayList<ImageView>? = null
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,25 +33,179 @@ class GameActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             model = intent.getSerializableExtra("model", GameModelClass::class.java)
-        }else{
+        } else {
             model = intent.getSerializableExtra("model") as GameModelClass
+
+        }
+        val layout1 = findViewById<View>(R.id.firstImageLayout) as RelativeLayout
+        boxImageViews1 = ArrayList()
+        model?.boundingBox?.forEach {
+            val lp = RelativeLayout.LayoutParams(it.width*2, it.height*2)
+            lp.topMargin = it.y - 20
+            lp.marginStart = it.x - 20
+            val imageView = ImageView(this@GameActivity) // initialize ImageView
+            imageView.visibility = View.GONE
+            imageView.layoutParams = lp
+            imageView.setImageResource(R.drawable.correct)
+            layout1.addView(imageView)
+            boxImageViews1?.add(imageView)
         }
 
+        val layout2 = findViewById<View>(R.id.secondImageLayout) as RelativeLayout
+        boxImageViews2 = ArrayList()
+        model?.boundingBox?.forEach {
+            val lp = RelativeLayout.LayoutParams(it.width*2, it.height*2)
+            lp.topMargin = it.y - 20
+            lp.marginStart = it.x - 20
+            val imageView = ImageView(this@GameActivity)
+            imageView.visibility = View.GONE
+            imageView.layoutParams = lp
+            imageView.setImageResource(R.drawable.correct)
+            layout2.addView(imageView)
+            boxImageViews2?.add(imageView)
+        }
 
         differenceChecker = findViewById(R.id.DifferenceChecker1)
-
         Glide.with(this)
             .load(model?.imageUrl)
+            .placeholder(R.drawable.image_placeholder)
             .into(differenceChecker)
 
         differenceChecker1 = findViewById(R.id.DifferenceChecker2)
-
-
         Glide.with(this)
             .load(model?.differenceImageUrl)
+            .placeholder(R.drawable.image_placeholder)
             .into(differenceChecker1)
 
-      //  val levelName = intent.getStringExtra("levelName")
+        handleTouchEvent()
+
+    }
+
+    fun checkAllBoxPass():Boolean{
+
+        val check = model?.boundingBox?.firstOrNull { !it.isPass }?.isPass
+
+        if (check != null)
+            return check
+
+        return true
+
+    }
+
+    //sharedPreferences.edit().putInt("IsUnlocked",2).apply()
+    fun successUnlockNextLevel(){
+        val sharedPreferences = getSharedPreferences("game", Context.MODE_PRIVATE)
+        model?.let { sharedPreferences.edit().putInt("IsUnlocked", it.level).apply() }
+
+    }
+
+    var count = 0
+    fun returnLifeCount(): Int {
+        return count++ // return the updated count
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    fun handleTouchEvent(){
+
+        val handleTouch: View.OnTouchListener = object : View.OnTouchListener {
+            @SuppressLint("MissingInflatedId")
+            override fun onTouch(v: View?, event: MotionEvent): Boolean {
+                val x = event.x.toInt()
+                val y = event.y.toInt()
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> Log.i("TAG", "touched down")
+                    MotionEvent.ACTION_MOVE -> Log.i("TAG", "moving: ($x, $y)")
+                    MotionEvent.ACTION_UP -> Log.i("TAG", "touched up")
+                }
+
+                val screenX = event.x.toInt()
+                val screenY = event.y.toInt()
+
+                var anyCorrect = false
+                run lit@{
+                    model?.boundingBox?.forEach {
+                        if (screenX > it.x && screenY > it.y && screenX < it.x + it.width && screenY < it.y + it.height) {
+                            it.isPass = true
+                            anyCorrect  = true
+                            val position = model!!.boundingBox!!.indexOf(it)
+                            boxImageViews1?.get(position)?.visibility  = View.VISIBLE
+                            boxImageViews2?.get(position)?.visibility = View.VISIBLE
+                            return@lit
+                        }
+                    }
+                }
+
+
+                        if (!anyCorrect) {
+                            val wrongPress = findViewById<ImageView>(R.id.wrongPress)
+                            wrongPress.setVisibility(View.VISIBLE)
+                            Handler().postDelayed(
+                                { wrongPress.setVisibility(View.GONE) },
+                                (1000).toLong()
+                            )
+                            //TODO:: Life line handling
+                            val rt = findViewById<View>(R.id.ratingBarForLife) as RatingBar
+                            rt.setIsIndicator(true)
+
+                            val Count = returnLifeCount()
+                            if (Count == 1){
+                                rt.rating = rt.numStars - 1f
+                            }
+                            else if (Count == 3){
+                                rt.rating = rt.numStars - 2f
+                            }
+                            else if (Count == 5){
+                                rt.rating = rt.numStars - 3f
+                                val toast1 = Toast.makeText(
+                                    applicationContext,
+                                    "NO LIFE LEFT",
+                                    Toast.LENGTH_SHORT
+                                )
+                                toast1.show()
+                                val handler = Handler()
+                                handler.postDelayed(Runnable { toast1.cancel() }, 900)
+
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    val intent = Intent(this@GameActivity, SplashLevelFail::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }, 1000)
+
+
+                            }
+
+                        }
+
+
+                val found = checkAllBoxPass()
+                if (found == true){
+
+
+
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this@GameActivity, SplashLevelComplete::class.java)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+
+                    successUnlockNextLevel()
+
+                }
+
+                Log.d("Touch Event", "Image  X, Y " + screenX + "," + screenY)
+                return true
+            }
+        }
+
+        differenceChecker1.setOnTouchListener(handleTouch)
+        differenceChecker.setOnTouchListener(handleTouch)
+
+    }
+
+}
+
+
+//  val levelName = intent.getStringExtra("levelName")
       //  val levelUnlocked = intent.getBooleanExtra("levelUnLocked", false)
      //   model = GameModelClass(levelName,levelUnlocked,null,null,null,1,null)
 
@@ -105,7 +261,7 @@ class GameActivity : AppCompatActivity() {
 */
 
 
-
+/*
         val handleTouch: View.OnTouchListener = object : View.OnTouchListener {
     //        @SuppressLint("SuspiciousIndentation")
             @SuppressLint("SuspiciousIndentation")
@@ -171,28 +327,5 @@ class GameActivity : AppCompatActivity() {
                     Log.d("Touch Event", "Image  X, Y " + screenX + "," + screenY)
                     return true
                 }
-            }
-            differenceChecker1.setOnTouchListener(handleTouch)
-            differenceChecker.setOnTouchListener(handleTouch)
-        }
+            }*/
 
-    fun checkAllBoxPass():Boolean{
-
-        val check = model?.boundingBox?.firstOrNull { !it.isPass }?.isPass
-
-         if (check != null)
-             return check
-
-        return true
-
-    }
-
-//sharedPreferences.edit().putInt("IsUnlocked",2).apply()
-    fun successUnlockNextLevel(){
-        val sharedPreferences = getSharedPreferences("game", Context.MODE_PRIVATE)
-        model?.let { sharedPreferences.edit().putInt("IsUnlocked", it.level).apply() }
-
-
-    }
-
-}
