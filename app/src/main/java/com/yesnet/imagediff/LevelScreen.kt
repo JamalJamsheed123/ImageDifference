@@ -1,5 +1,6 @@
 package com.yesnet.imagediff
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -40,6 +41,7 @@ class LevelScreen : AppCompatActivity(){
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
 
         if (levelList != null)

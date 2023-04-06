@@ -9,13 +9,15 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image1.png?alt=media&token=ae2f6777-ac3e-44b8-8cf9-4c6bed4bd593",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image2.png?alt=media&token=be3a586f-4dd9-4316-a69a-22abd7f5fa8c",
     "level": 0,
+
     "boundingBox": [{
-    "x" : 525,
-    "y": 270,
-    "width": 60,
-      "isPass": false,
-    "height": 60
-  },
+        "x" : 525,
+        "y": 270,
+        "width": 60,
+        "isPass": false,
+        "height": 60
+
+    },
       {
         "x" : 850,
         "y": 350,
@@ -44,8 +46,7 @@
         "isPass": false,
         "height": 60
       }]
-
-  },
+     },
 
   {
 
@@ -90,7 +91,6 @@
         "isPass": false,
         "height": 60
       }]
-
   },
   {
 
@@ -100,6 +100,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image4%20copy.jpeg?alt=media&token=c99718ce-930a-4510-98fe-9a016177697a",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image4.jpeg?alt=media&token=27d62255-16ad-42e1-aa28-c664a8090f86",
     "level": 2,
+
     "boundingBox": [{
       "x" : 335,
       "y": 205,
@@ -135,7 +136,6 @@
         "isPass": false,
         "height": 55
       }]
-
   },
   {
 
@@ -145,6 +145,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image5%20copy.jpeg?alt=media&token=827c8210-8035-49e1-af03-79d67803ac3f",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image5.jpeg?alt=media&token=4cb87fa6-25a4-4e3f-9258-e2a959bdc7cc",
     "level": 3,
+
     "boundingBox": [
       {
         "x": 95,
@@ -181,7 +182,6 @@
         "isPass": false,
         "height": 50
       }]
-
   },
   {
 
@@ -226,7 +226,6 @@
         "isPass": false,
         "height": 50
       }]
-
   },
   {
 
@@ -236,6 +235,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image7%20copy.jpeg?alt=media&token=72716a89-f66f-4cd0-ac52-693d9bcac5d7",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image7.jpeg?alt=media&token=e7afc848-694e-4fa9-a1dd-b17fb9ceb44a",
     "level": 5,
+
     "boundingBox": [{
       "x" : 745,
       "y": 305,
@@ -271,7 +271,6 @@
         "isPass": false,
         "height": 60
       }]
-
   },
   {
 
@@ -281,6 +280,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image8%20copy.jpeg?alt=media&token=2c2bc7d5-7c71-4045-b991-3b57186393bd",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image8.jpeg?alt=media&token=f1a0b4f1-10cb-4f50-9ea7-05208e6ef49b ",
     "level": 6,
+
     "boundingBox": [{
       "x" : 885,
       "y": 485,
@@ -316,7 +316,6 @@
         "isPass": false,
         "height": 55
       }]
-
   },
   {
 
@@ -326,6 +325,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image9%20copy.png?alt=media&token=d72cfbe2-e465-4112-ad16-47c53a8a1b3b",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image9.png?alt=media&token=0c283d54-3f00-48c1-94ee-0d77e0ab0a2d",
     "level": 7,
+
     "boundingBox": [{
       "x" : 205,
       "y": 905,
@@ -361,7 +361,6 @@
         "isPass": false,
         "height": 60
       }]
-
   },
   {
 
@@ -371,6 +370,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/imag10%20copy.jpeg?alt=media&token=f3ae347a-efc6-4d7a-bcd1-de396e4f7565",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/imag10.jpeg?alt=media&token=1a480390-e468-41a5-b6ab-777dc84b8370",
     "level": 8,
+
     "boundingBox": [{
       "x" : 220,
       "y": 45,
@@ -406,7 +406,6 @@
         "isPass": false,
         "height": 65
       }]
-
   },
   {
 
@@ -416,6 +415,7 @@
     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image11%20copy.jpeg?alt=media&token=5a44920d-11ac-4926-8229-8f0472fe145b",
     "differenceImageUrl": "https://firebasestorage.googleapis.com/v0/b/imagedifference-abe51.appspot.com/o/image11.jpeg?alt=media&token=84c6bba3-3123-4f15-b7dd-e1d3f31241c8",
     "level": 9,
+
     "boundingBox": [{
       "x" : 320,
       "y": 85,
@@ -451,7 +451,6 @@
         "isPass": false,
         "height": 75
       }]
-
   }
  ]
 }

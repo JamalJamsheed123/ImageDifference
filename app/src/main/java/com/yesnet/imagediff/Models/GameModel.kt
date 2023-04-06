@@ -12,7 +12,6 @@ data class GameModelClass (
     var imageUrl: String? = null,
     var thumbnailUrl: String? = null,
     var differenceImageUrl: String? = null,
-
     var level: Int,
     var boundingBox: ArrayList<Box>?
     ): Serializable
@@ -22,5 +21,6 @@ data class Box (
     var y: Int,
     var width: Int,
     var isPass: Boolean = false,
-    var height: Int
+    var height: Int,
+
 ): Serializable
