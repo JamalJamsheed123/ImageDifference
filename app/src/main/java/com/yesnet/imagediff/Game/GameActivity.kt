@@ -104,6 +104,10 @@ class GameActivity : AppCompatActivity() {
         return count++ // return the updated count
     }
 
+    var num = 0
+    fun remainDiffcount(): Int {
+        return num++ // return the updated count
+    }
     @SuppressLint("ClickableViewAccessibility")
     fun handleTouchEvent(){
 
@@ -130,6 +134,28 @@ class GameActivity : AppCompatActivity() {
                             val position = model!!.boundingBox!!.indexOf(it)
                             boxImageViews1?.get(position)?.visibility  = View.VISIBLE
                             boxImageViews2?.get(position)?.visibility = View.VISIBLE
+                            val remainingDiff = findViewById<View>(R.id.remainingDifference) as TextView
+                            val Number = remainDiffcount()
+                            if (Number == 1) {
+                                remainingDiff.setText(getString(R.string.remainingDifferce1))
+                                remainingDiff.setVisibility(View.VISIBLE)
+                            }
+                            else if (Number == 3){
+                                remainingDiff.setText(getString(R.string.remainingDifferce2))
+                                remainingDiff.setVisibility(View.VISIBLE)
+                            }
+                            else if (Number == 5){
+                                remainingDiff.setText(getString(R.string.remainingDifferce3))
+                                remainingDiff.setVisibility(View.VISIBLE)
+                            }
+                            else if (Number == 7){
+                                remainingDiff.setText(getString(R.string.remainingDifferce4))
+                                remainingDiff.setVisibility(View.VISIBLE)
+                            }
+                            else if (Number == 9){
+                                remainingDiff.setText(getString(R.string.remainingDifferce5))
+                                remainingDiff.setVisibility(View.VISIBLE)
+                            }
                             return@lit
                         }
                     }
