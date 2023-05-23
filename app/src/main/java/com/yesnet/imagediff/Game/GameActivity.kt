@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.yesnet.imagediff.Models.*
@@ -24,19 +25,19 @@ class GameActivity : AppCompatActivity() {
     private lateinit var differenceChecker1: ImageButton
 
     private  var  model: GameModelClass?  = null
+
     private var  boxImageViews1:ArrayList<ImageView>? = null
     private var  boxImageViews2:ArrayList<ImageView>? = null
+    var screenOpen = true // logical incorrect
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game_level1)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            model = intent.getSerializableExtra("model", GameModelClass::class.java)
-        } else {
-            model = intent.getSerializableExtra("model") as GameModelClass
+        model = DataManager.instance.getNextLevelGame()
 
-        }
+
         val layout1 = findViewById<View>(R.id.firstImageLayout) as RelativeLayout
         boxImageViews1 = ArrayList()
         model?.boundingBox?.forEach {
@@ -191,12 +192,15 @@ class GameActivity : AppCompatActivity() {
                                 val handler = Handler()
                                 handler.postDelayed(Runnable { toast1.cancel() }, 900)
 
-                                Handler(Looper.getMainLooper()).postDelayed({
-                                    val intent = Intent(this@GameActivity, SplashLevelFail::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                }, 1000)
-
+                                if (screenOpen) {
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        val intent =
+                                            Intent(this@GameActivity, SplashLevelFail::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }, 1000)
+                                    screenOpen = false
+                                }
 
                             }
 
@@ -204,18 +208,20 @@ class GameActivity : AppCompatActivity() {
 
 
                 val found = checkAllBoxPass()
-                if (found == true){
 
 
+                if (found){
+                    if (screenOpen){
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val intent = Intent(this@GameActivity, SplashLevelComplete::class.java)
+                            startActivity(intent)
+                            finish()
+                        }, 1000)
 
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        val intent = Intent(this@GameActivity, SplashLevelComplete::class.java)
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-
-                    successUnlockNextLevel()
-
+                        DataManager.instance.markLevelPass()
+                        successUnlockNextLevel()
+                        screenOpen =  false
+                    }
                 }
 
                 Log.d("Touch Event", "Image  X, Y " + screenX + "," + screenY)

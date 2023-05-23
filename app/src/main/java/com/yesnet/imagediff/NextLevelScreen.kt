@@ -1,15 +1,13 @@
 package com.yesnet.imagediff
 
-import android.content.Context
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.yesnet.imagediff.Models.GameModelClass
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_next_level_screen.view.*
 
 class NextLevelScreen : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +22,17 @@ class NextLevelScreen : AppCompatActivity() {
             finish()
         }
 
-
         val gotoNextLevelScreen = findViewById<Button>(R.id.nextLevel)
         gotoNextLevelScreen.setOnClickListener{
 
+            val context = this
+        //    DataManager.instance.getList(context)
+
+          //  DataManager.instance.markLevelPass(0)
+            val  intent = Intent(context, GameActivity::class.java)
+            startActivity(intent)
             finish()
+
         }
 
     }
@@ -38,9 +42,4 @@ class NextLevelScreen : AppCompatActivity() {
         val intent = Intent (this@NextLevelScreen, LevelScreen::class.java)
         startActivity(intent)
     }
-
-
-
-
-
 }

@@ -40,17 +40,12 @@ class GameAdapter(
             .placeholder(R.drawable.image_placeholder)
             .into(holder.levelImageView)
 
-
-
-
-
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(level)
 
         }
 
     }
-
     override fun getItemCount(): Int{
          return productlist.size
 

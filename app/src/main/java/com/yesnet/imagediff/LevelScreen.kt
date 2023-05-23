@@ -3,42 +3,34 @@ package com.yesnet.imagediff
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.yesnet.imagediff.Adapter.GameAdapter
-import com.yesnet.imagediff.Models.Box
 import com.yesnet.imagediff.Models.GameModel
 import com.yesnet.imagediff.Models.GameModelClass
 import kotlinx.android.synthetic.main.item_row.*
 import org.json.JSONException
-import org.json.JSONObject
 import java.io.IOException
 import java.io.Serializable
 import java.nio.charset.Charset
-import java.util.jar.Attributes.Name
-import kotlin.properties.Delegates
+
 
 class LevelScreen : AppCompatActivity(){
 
     private lateinit var adapter: GameAdapter
     private lateinit var recyclerView: RecyclerView
    // private  var  model: GameModelClass?  = null
-   private var levelList: ArrayList<GameModelClass>? = null
+    var levelList: ArrayList<GameModelClass>? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level)
-
         setupLevelAdaptor()
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -85,13 +77,12 @@ class LevelScreen : AppCompatActivity(){
 
 
     fun setupLevelAdaptor(){
-
-
         try {
-
-
-            val jsonString = getJSONFromAssets()
-            val gameData = Gson().fromJson(jsonString, GameModel::class.java)
+            if (DataManager.instance.getGameModel() == null){
+                val jsonString = getJSONFromAssets()
+                val gameData = Gson().fromJson(jsonString, GameModel::class.java)
+                DataManager.instance.saveList(this,gameData)
+            }
 
             // set the LayoutManager For this Recyclerview use
             val LayoutManager = LinearLayoutManager(this)
@@ -99,38 +90,22 @@ class LevelScreen : AppCompatActivity(){
 
             recyclerView.layoutManager = LayoutManager
 
-
-            recyclerView.setHasFixedSize(true)
-            adapter = GameAdapter( gameData.game)
-            recyclerView.adapter = adapter
-
-
-            // safe game in new variable and processed upto game levels using loop
-
-            levelList = gameData.game
-            updateLevelList()
-
+            DataManager.instance.getGameModel()?.game?.let {
+                adapter = GameAdapter(it)
+                recyclerView.setHasFixedSize(true)
+                recyclerView.adapter = adapter
+                levelList = it
+                updateLevelList()
+            }
 
             adapter.onItemClick = {
-
-
-
                 if (it.isUnlocked == true) {
-
                     val intent1 = Intent(this, GameActivity::class.java)
-                    intent1.putExtra("level", it.level)
-                    intent1.putExtra("model", it as Serializable)
-                    intent1.putExtra("levelName", it.Name)
-                    intent1.putExtra("levelUnLocked", it.isUnlocked)
+                    DataManager.instance.currentLevel = it.level
                     startActivity(intent1)
-
-
-
                 } else {
                     it.isUnlocked != true
                 }
-
-
             }
         }
         catch (e: JSONException){
@@ -138,8 +113,6 @@ class LevelScreen : AppCompatActivity(){
             e.printStackTrace()
 
         }
-
-
     }
 
     private fun updateLevelList(){
@@ -166,6 +139,10 @@ class LevelScreen : AppCompatActivity(){
         return json
 
     }
-
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        val intent = Intent (this@LevelScreen, StartActivity::class.java)
+        startActivity(intent)
+    }
 
 }
